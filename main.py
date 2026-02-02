@@ -1,30 +1,17 @@
 from colorSwatch import *
-
 '''
-The populate swatches methods take 4 parameters:
-    hex_code (str): This is the hex code of the initial color that varients will be generated from.
-                    This must be 6 characters only and exclude the '#' prefix of the hex code
-                    THIS MUST BE A 100% Saturation and 100% value color.
-
-    variance (int): This is a integer 0-100 representing how random the color selection.
-                    For hueflex, hue has a range of +/- 20*(variation/100). 
-                    20 degrees maximum varience in hue ensures that all colors appear similar.
-
-    directory (str (raw string on windows)): This is the full path to the folder color swatches should be put into. 
-                                            IT MUST EXIST BEFORE RUNNING CODE! PROGRAM DOES NOT CREATE A FOLDER IF ONE DOES NOT EXIST!
-
-    swatch_count (int): Number of swatches that should be created           
+populate_swatches generates png files (25px x 25px) of maximum saturation colors between two hex code colors
+populate_swatches takes 4 parameters:
+    hex_code (str): this is one of the two color end points. It must be a hexcode without its prefix '#'
+    other_hex_code (str): this is the second of the two color end points. It must be a hexcode without its prefix '#'
+    colors_count (int): this is the number of swatches that should be generated
+    directory (str NOTE: must be raw string on windows by prefixing string with 'r'): this is the full path to folder where swatches will be placed
+        IMPORTANT NOTE: DIRECTORY MUST ALREADY EXIST (and preferably empty) !!!
 '''
+
 Colorswatch.populate_swatches(
-    "001aff",
-    50,
-    r"C:\Users\gelat\OneDrive\Desktop\Work\Color_Swatch_Generator\swatches",
-    100
+    "3270a6",
+    "455e4c",
+    20,
+    r"C:\Users\gelat\Downloads\Swatch_Generator-main\Swatch_Generator-main\swatches"
 )
-
-# Colorswatch.populate_swatches_hueflex(
-#     "006eff",
-#     100,
-#     r"C:\Users\gelat\OneDrive\Desktop\Work\Color_Swatch_Generator\swatches",
-#     100
-# )
