@@ -1,16 +1,12 @@
 from PIL import Image
 from PIL import ImageDraw
 import colorsys
-import random
+import math
 import os
 
 class Colorswatch:
 
-    def clear_folder(directory):
-        for filename in os.listdir(directory):
-            file_path = os.path.join(directory, filename)
-            os.unlink(file_path)
-
+    colors_list = []
 
     @classmethod
     def hex_to_hsv(cls, hex_code: str):
@@ -28,10 +24,14 @@ class Colorswatch:
         saturation = s_norm * 100
         value = v_norm * 100
         
-        return hue, saturation, value
+        return (hue, saturation, value)
     
     @classmethod
-    def hsv_to_rgb(cls, hue, saturation, value):
+    def hsv_to_rgb(cls, hsv):
+        hue = hsv[0]
+        saturation = hsv[1]
+        value = hsv[2]
+
         hue /= 360
         saturation /= 100
         value /= 100
@@ -43,60 +43,48 @@ class Colorswatch:
         b = int(round(b * 255))
 
         return (r,g,b)
-
-    @classmethod
-    def generate_color(cls, hex_code: str, variance_percentage: int):
-        hue, saturation, value = Colorswatch.hex_to_hsv(hex_code)
-
-        if variance_percentage > 0:
-            variance_percentage -= 1
-        
-        saturation -= random.randint(0, variance_percentage)
-        value -= random.randint(0, variance_percentage)
-
-        color = Colorswatch.hsv_to_rgb(hue,saturation,value)
-        return (color)
-
-    @classmethod
-    def generate_color_with_hueflex(cls, hex_code: str, variance_percentage: int):
-        hue, saturation, value = Colorswatch.hex_to_hsv(hex_code)
     
-        if variance_percentage > 0:
-            variance_percentage -= 1
+    @classmethod
+    def populate_colors_list(cls, hex_code: str, other_hex_code: str, colors_count: int):
+        hsv = Colorswatch.hex_to_hsv(hex_code)
+        other_hsv = Colorswatch.hex_to_hsv(other_hex_code)
 
-        max_hueflex = int(30 * (variance_percentage/100))
+        hue = hsv[0]
+        other_hue = other_hsv[0]
 
-        hue_shift = random.randint(0, max_hueflex)
-        rand = random.randint(1, 2)
-        if rand == 1:
-            hue += hue_shift
+        hue_step = (abs(other_hue - hue)) / colors_count
+
+        if hue < other_hue:
+            rgb = Colorswatch.hsv_to_rgb((hue,100,100))
+
+            for color in range(colors_count):
+                Colorswatch.colors_list.append(rgb)
+                hue += hue_step
+                rgb = Colorswatch.hsv_to_rgb((hue,100,100))
+                
         else:
-            hue -= hue_shift
-        
-        saturation -= random.randint(0, variance_percentage)
-        value -= random.randint(0, variance_percentage)
+            rgb = Colorswatch.hsv_to_rgb((other_hue,100,100))
 
-        color = Colorswatch.hsv_to_rgb(hue,saturation,value)
-        return (color)
-    
+            for color in range(colors_count):
+                Colorswatch.colors_list.append(rgb)
+                other_hue += hue_step
+                rgb = Colorswatch.hsv_to_rgb((other_hue,100,100))
 
-    def generate_colored_square(color, directory: str, swatch_id: int):
+    @classmethod
+    def generate_colored_square(cls, color, directory: str, swatch_id):
         filename = f"swatch_{swatch_id}.png"
         filepath = os.path.join(directory, filename)
 
         img = Image.new('RGB', (25, 25), color=color)
         img.save(filepath)
 
-    def populate_swatches(hex_code: str, variance: int, directory: str, swatch_count: int):
-        for swatch_id in range(swatch_count):
-            color = Colorswatch.generate_color(hex_code, variance)
-            print(color)
-            Colorswatch.generate_colored_square(color, directory, swatch_id)
+    @classmethod
+    def populate_swatches(cls, hex_code: str, other_hex_code: str, colors_count: int, directory: str):
+        Colorswatch.populate_colors_list(hex_code, other_hex_code, colors_count)
 
-    def populate_swatches_hueflex(hex_code: str, variance: int, directory: str, swatch_count: int):        
-        for swatch_id in range(swatch_count):
-            color = Colorswatch.generate_color_with_hueflex(hex_code, variance)
-            Colorswatch.generate_colored_square(color, directory, swatch_id)
+        for swatch_id in range(len(Colorswatch.colors_list)):
+            Colorswatch.generate_colored_square(Colorswatch.colors_list[swatch_id], directory, swatch_id + 1)
+
             
 
 
