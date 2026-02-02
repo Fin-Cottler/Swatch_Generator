@@ -1,4 +1,14 @@
-# Digital Color Modes
+
+     ______     .-./`)   .-_'''-.  .-./`) ,---------.    ____      .---.                 _______      ,-----.      .---.       ,-----.    .-------.     
+    |    _ `''. \ .-.') '_( )_   \ \ .-.')\          \ .'  __ `.   | ,_|                /   __  \   .'  .-,  '.    | ,_|     .'  .-,  '.  |  _ _   \    
+    | _ | ) _  \/ `-' \|(_ o _)|  '/ `-' \ `--.  ,---'/   '  \  \,-./  )               | ,_/  \__) / ,-.|  \ _ \ ,-./  )    / ,-.|  \ _ \ | ( ' )  |    
+    |( ''_'  ) | `-'`"`. (_,_)/___| `-'`"`    |   \   |___|  /  |\  '_ '`)           ,-./  )      ;  \  '_ /  | :\  '_ '`) ;  \  '_ /  | :|(_ o _) /    
+    | . (_) `. | .---. |  |  .-----..---.     :_ _:      _.-`   | > (_)  )           \  '_ '`)    |  _`,/ \ _/  | > (_)  ) |  _`,/ \ _/  || (_,_).' __  
+    |(_    ._) ' |   | '  \  '-   .'|   |     (_I_)   .'   _    |(  .  .-'            > (_)  )  __: (  '\_/ \   ;(  .  .-' : (  '\_/ \   ;|  |\ \  |  | 
+    |  (_.\.' /  |   |  \  `-'`   | |   |    (_(=)_)  |  _( )_  | `-'`-'|___         (  .  .-'_/  )\ `"/  \  ) /  `-'`-'|___\ `"/  \  ) / |  | \ `'   / 
+    |       .'   |   |   \        / |   |     (_I_)   \ (_ o _) /  |        \         `-'`-'     /  '. \_/``".'    |        \'. \_/``".'  |  |  \    /  
+    '-----'`     '---'    `'-...-'  '---'     '---'    '.(_,_).'   `--------`           `._____.'     '-----'      `--------`  '-----'    ''-'   `'-'   
+                                                                                                                                                    
 
     Color modes are essential to the digital display of data. There are many ways to express color and none of them work the same. Enumerated below are 4 different color modes that you may use in your programming.
 
@@ -20,5 +30,6 @@
     Hue is typically measured in degrees out of 360
     Saturation and Value are typically measured in percentages out of 100%
 ### Hex
+
 
     Hex color is actually just another way of expressing RGB color. It is comprised of 6 characters which represent red, green, and blue values with the base-16 hexadecimal system (0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f). The first 2 characters represent the amount of red expressed, the second 2 correlates to green, and the last 2 correlate to blue.
