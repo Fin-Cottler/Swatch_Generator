@@ -3,7 +3,6 @@ from PIL import ImageDraw
 import colorsys
 import random
 import os
-import shutil
 
 class Colorswatch:
 
@@ -65,7 +64,7 @@ class Colorswatch:
         if variance_percentage > 0:
             variance_percentage -= 1
 
-        max_hueflex = int(360 * (variance_percentage/100))
+        max_hueflex = int(30 * (variance_percentage/100))
 
         hue_shift = random.randint(0, max_hueflex)
         rand = random.randint(1, 2)
