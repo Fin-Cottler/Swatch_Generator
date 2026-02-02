@@ -9,9 +9,11 @@ populate_swatches takes 4 parameters:
         IMPORTANT NOTE: DIRECTORY MUST ALREADY EXIST (and preferably empty) !!!
 '''
 
+
 Colorswatch.populate_swatches(
     "3270a6",
     "455e4c",
     20,
     r"C:\Users\gelat\Downloads\Swatch_Generator-main\Swatch_Generator-main\swatches"
 )
+
