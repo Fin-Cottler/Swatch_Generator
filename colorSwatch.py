@@ -4,6 +4,7 @@ import colorsys
 import math
 import os
 
+
 class Colorswatch:
 
     colors_list = []
@@ -92,3 +93,4 @@ class Colorswatch:
 
             
         
+
